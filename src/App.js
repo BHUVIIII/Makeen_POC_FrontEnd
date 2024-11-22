@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import CreatePatient from "./CreatePatient"; // Import CreatePatient component
+import SearchPatients from "./SearchPatients"; // Import SearchPatients component
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      {/* Navigation Bar */}
+      <nav style={navStyles}>
+        <Link to="/" style={linkStyles}>Create Patient</Link>
+        <Link to="/search" style={linkStyles}>Search Patients</Link>
+      </nav>
+
+      {/* Define Routes */}
+      <Routes>
+        <Route path="/" element={<CreatePatient />} />
+        <Route path="/search" element={<SearchPatients />} />
+      </Routes>
+    </Router>
   );
-}
+};
+
+// Inline Styles for Navigation Bar (Optional)
+const navStyles = {
+  padding: "10px",
+  background: "#f1f1f1",
+  display: "flex",
+  justifyContent: "center",
+  gap: "20px",
+};
+
+const linkStyles = {
+  textDecoration: "none",
+  color: "#007bff",
+  fontWeight: "bold",
+};
 
 export default App;
+
